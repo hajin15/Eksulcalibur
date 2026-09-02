@@ -142,10 +142,6 @@ export default function ExculiburApp() {
     );
   }
 
-  function redraw() {
-    startDraw(assignments);
-  }
-
   function newGame() {
     setStage("setup");
     setPlayers([]);
@@ -204,7 +200,7 @@ export default function ExculiburApp() {
           />
         )}
         {stage === "result" && winner && (
-          <ResultScreen winner={winner} onRedraw={redraw} onNewGame={newGame} />
+          <ResultScreen winner={winner} onNewGame={newGame} />
         )}
       </div>
     </div>
@@ -393,7 +389,7 @@ function DrawScreen({ queue, triedIds, activeId, phase, drawLine, onAttempt }) {
   );
 }
 
-function ResultScreen({ winner, onRedraw, onNewGame }) {
+function ResultScreen({ winner, onNewGame }) {
   return (
     <div className="exc-screen exc-center">
       <p className="exc-sub small">선택받은 자</p>
@@ -405,14 +401,9 @@ function ResultScreen({ winner, onRedraw, onNewGame }) {
       <p className="exc-resultplayer">{winner.player.name}</p>
       <p className="exc-charline">“{winner.character.line}”</p>
       <p className="exc-drinkline">마셔라 🍶</p>
-      <div className="exc-row">
-        <button className="exc-secondary" onClick={onNewGame}>
-          새 게임
-        </button>
-        <button className="exc-primary" onClick={onRedraw}>
-          다시 뽑기
-        </button>
-      </div>
+      <button className="exc-primary" onClick={onNewGame}>
+        새 게임
+      </button>
     </div>
   );
 }
