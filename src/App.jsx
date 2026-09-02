@@ -487,7 +487,7 @@ html, body, #root {
 }
 .exc-title {
   font-family: Georgia, "Nanum Myeongjo", serif;
-  font-size: 34px;
+  font-size: 30px;
   letter-spacing: 1px;
   color: #f1ece0;
   text-align: center;
@@ -496,14 +496,14 @@ html, body, #root {
 .exc-sub {
   color: #9a97a8;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   margin: 0 0 24px;
   line-height: 1.5;
 }
 .exc-sub.small { margin-bottom: 18px; }
 .exc-heading {
   font-family: Georgia, "Nanum Myeongjo", serif;
-  font-size: 21px;
+  font-size: 19.5px;
   color: #f1ece0;
   text-align: center;
   margin: 4px 0 8px;
@@ -542,16 +542,17 @@ html, body, #root {
   min-width: 28px;
   text-align: center;
 }
+/* flex: 1 은 .exc-row 안에서만 — 세로 flex인 화면에 그냥 두면 버튼이 세로로 늘어난다 */
 .exc-primary {
   background: linear-gradient(180deg, #e2c265 0%, #c99f2e 100%);
   color: #1c1c14;
   border: none;
   border-radius: 12px;
-  padding: 15px 20px;
-  font-size: 16px;
+  padding: 13px 18px;
+  font-size: 15.5px;
   font-weight: 600;
   cursor: pointer;
-  flex: 1;
+  flex: 0 0 auto;
 }
 .exc-primary:active { transform: translateY(1px); }
 .exc-primary:disabled { opacity: 0.4; cursor: default; }
@@ -560,10 +561,10 @@ html, body, #root {
   color: #c8c5d6;
   border: 1px solid #45485c;
   border-radius: 12px;
-  padding: 15px 20px;
-  font-size: 15px;
+  padding: 13px 18px;
+  font-size: 14.5px;
   cursor: pointer;
-  flex: 1;
+  flex: 0 0 auto;
 }
 .exc-skip {
   background: none;
@@ -604,6 +605,8 @@ html, body, #root {
   display: flex;
   gap: 10px;
 }
+.exc-row .exc-primary,
+.exc-row .exc-secondary { flex: 1; }
 .exc-turn {
   text-align: center;
   color: #6d6a7c;
