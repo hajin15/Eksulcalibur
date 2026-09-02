@@ -425,22 +425,29 @@ function Emblem() {
 }
 
 const css = `
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: #14151f;
+}
 .exc-root {
-  min-height: 100%;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
   background:
     radial-gradient(ellipse at 50% -10%, #2a2d42 0%, #14151f 55%),
     #14151f;
-  padding: 28px 16px;
+  padding: 24px 14px;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .exc-card {
   width: 100%;
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(180deg, #1d2030 0%, #181a27 100%);
   border: 1px solid #33364a;
   border-radius: 20px;
@@ -448,9 +455,24 @@ const css = `
   padding: 32px 24px;
   box-sizing: border-box;
 }
+/* safe center: 내용이 넘치면 위가 잘리지 않게 — 미지원 브라우저는 flex-start로 폴백 */
 .exc-screen {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: safe center;
+}
+/* 폰에서는 카드가 화면을 꽉 채운다 */
+@media (max-width: 460px) {
+  .exc-root { padding: 0; }
+  .exc-card {
+    max-width: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: calc(22px + env(safe-area-inset-top)) 20px
+             calc(22px + env(safe-area-inset-bottom));
+  }
 }
 .exc-center {
   align-items: center;
